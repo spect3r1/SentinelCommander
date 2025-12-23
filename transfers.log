@@ -1,0 +1,89 @@
+2025-12-22 14:42:44,846 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:43:05,160 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:44:20,454 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:45:06,344 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:46:21,684 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:47:59,078 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:49:13,553 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:52:05,334 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:53:04,660 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:55:22,756 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:56:09,253 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 14:57:21,596 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:02:25,067 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:33:58,820 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:40:22,501 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:44:31,784 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:52:31,823 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: TransferState: TransferState(tid='36fa0ec48e92', sid='y2e3f-d0lnh-g63lh', direction='download', remote_path='C:\\Users\\Omars\\mumu_boot.txt', local_path='/tmp/gc2_dl_ws_efes3wa7/mumu_boot.txt', is_folder=False, os_type='windows', transport='http', chunk_size=4194304, total_bytes=0, bytes_done=0, next_index=0, total_chunks=0, created_at=1766411608.3094952, updated_at=1766411608.309496, status='init', error=None, tmp_local_path=None, archive_remote_path=None, cleanup_remote_cmd=None, options={'compress': None, 'encrypt': None})
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: 
+========================================================================
+[TRANSFERS] ShellProtocol.__init__
+========================================================================
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   op_id=None, timeout=30.0
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: 
+========================================================================
+[TRANSFERS] INIT DOWNLOAD
+========================================================================
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   tid='36fa0ec48e92', sid='y2e3f-d0lnh-g63lh', os_type='windows', transport='http', remote_path='C:\\Users\\Omars\\mumu_boot.txt', is_folder=False, chunk_size=4194304
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: 
+========================================================================
+[TRANSFERS] PREPARE REMOTE ARCHIVE
+========================================================================
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   sid='y2e3f-d0lnh-g63lh', os_type='windows', transport='http', remote_path='C:\\Users\\Omars\\mumu_boot.txt', is_folder=False
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: 
+========================================================================
+[TRANSFERS] REMOTE_SIZE probe
+========================================================================
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   sid='y2e3f-d0lnh-g63lh', os_type='windows', transport='http', remote_path='C:\\Users\\Omars\\mumu_boot.txt', is_folder=False
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   win.size.cmd=$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::ASCII;$p='C:\Users\Omars\mumu_boot.txt';try {  $i=Get-Item -LiteralPath $p -Force;  if ($null -eq $i) { '-1' }   elseif ($i.PSIsContainer) { 'DIR' }   else { [string]$i.Length }} catch { '-1' }
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager: ------------------------------------------------------------------------
+[RUN_CMD begin]
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   sid='y2e3f-d0lnh-g63lh', transport='http', op_id=None
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   cmd.preview=$ErrorActionPreference='Stop';[Console]::OutputEncoding=[System.Text.Encoding]::ASCII;$p='C:\Users\Omars\mumu_boot.txt';try {  $i=Get-Item -LiteralPath $p -Forc…(+113)
+2025-12-22 15:53:28,309 DEBUG core.transfers.manager:   _run_cmd.timeout=30.000s transport=http
+2025-12-22 15:53:34,095 DEBUG core.transfers.manager:   _run_cmd.ok elapsed=5.7859s out.len=3 out.preview=860
+2025-12-22 15:53:34,095 DEBUG core.transfers.manager: GOT OUTPUT SIZE: 860
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager:   win.size.result=860
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager:   total_bytes=860, total_chunks=1, status='running'
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager: DL[36fa0ec48e92] start: status=running dir=download remote='C:\\Users\\Omars\\mumu_boot.txt' local='/tmp/gc2_dl_ws_efes3wa7/mumu_boot.txt' chunk=4194304 total_bytes=860 next_index=0 bytes_done=0
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager: [*] Transfer started (download) TID=36fa0ec48e92 → /tmp/gc2_dl_ws_efes3wa7/mumu_boot.txt
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager: DL[36fa0ec48e92] loop: requesting chunk idx=0/1 (bytes_done=0)
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager: ------------------------------------------------------------------------
+[NEXT DOWNLOAD CHUNK]
+2025-12-22 15:53:34,096 DEBUG core.transfers.manager:   idx=0, offset=0, chunk_size=4194304, bytes_done=0, total_bytes=860
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager: ------------------------------------------------------------------------
+[WINDOWS READ CHUNK]
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager:   index=0, offset=0, chunk_size=4194304
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager: ------------------------------------------------------------------------
+[RUN_CMD begin]
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager:   sid='y2e3f-d0lnh-g63lh', transport='http', op_id=None
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager:   cmd.preview=$fs=[System.IO.File]::OpenRead('C:\Users\Omars\mumu_boot.txt');$fs.Seek(0,'Begin') > $null;$buf=New-Object byte[] 4194304;$read=$fs.Read($buf,0,4194304);$fs.Clo…(+44)
+2025-12-22 15:53:34,097 DEBUG core.transfers.manager:   _run_cmd.timeout=30.000s transport=http
+2025-12-22 15:53:40,644 DEBUG core.transfers.manager:   _run_cmd.ok elapsed=6.5471s out.len=1148 out.preview=YWRkX3BhdGhfdG9fYWNjZWxpc3QgcGF0aDogQzpcUHJvZ3JhbSBGaWxlc1xOZXRlYXNlXE11TXVQbGF5ZXJcbnhfZGV2aWNlXDEyLjBcdm1zXE11TXVQbGF5ZXJHbG9iYWwtMTIuMC1iYXNlXHN5c3RlbS52ZGkN…(+988)
+2025-12-22 15:53:40,645 DEBUG core.transfers.manager:   read.ok b64.len=1148 decoded.len=860
+2025-12-22 15:53:40,645 DEBUG core.transfers.manager:   write_at: path=/home/spect3r/.sentinelcommander/transfers/y2e3f-d0lnh-g63lh/36fa0ec48e92/data.part offset=0 write_len=860 (is_last=True)
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager:   bytes_done=860, next_index=1
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] chunk_ok: wrote idx=0 -> next_index=1 bytes_done=860
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] progress saved: next_index=1 bytes_done=860
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] loop: requesting chunk idx=1/1 (bytes_done=860)
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: ------------------------------------------------------------------------
+[NEXT DOWNLOAD CHUNK]
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager:   finished: idx=1 total_chunks=1
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] loop: proto returned None at idx=1 (total_chunks=1)
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] completion_check: have=860 need=860
+2025-12-22 15:53:40,646 DEBUG core.transfers.manager: DL[36fa0ec48e92] finalize: moving '/home/spect3r/.sentinelcommander/transfers/y2e3f-d0lnh-g63lh/36fa0ec48e92/data.part' -> '/tmp/gc2_dl_ws_efes3wa7/mumu_boot.txt'
+2025-12-22 15:53:40,647 DEBUG core.transfers.manager: DL[36fa0ec48e92] done: saved state; is_folder=False
+2025-12-22 15:53:40,647 DEBUG core.transfers.manager: 
+========================================================================
+[TRANSFERS] CLEANUP
+========================================================================
+2025-12-22 15:53:40,647 DEBUG core.transfers.manager:   tid='36fa0ec48e92', sid='y2e3f-d0lnh-g63lh', cleanup_cmd=None, archive=None
+2025-12-22 15:53:40,647 DEBUG core.transfers.manager: DL[36fa0ec48e92] cleanup: non-folder remote cleanup ok
+2025-12-22 15:53:40,647 DEBUG core.transfers.manager: [+] Transfer complete: /tmp/gc2_dl_ws_efes3wa7/mumu_boot.txt
+2025-12-22 15:58:07,644 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 16:00:49,290 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 16:17:08,121 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 16:23:11,506 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 16:27:20,698 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log
+2025-12-22 16:34:24,959 DEBUG core.transfers: transfers logger initialized at /home/spect3r/Coding/python/aast/c2/SentinelCommander/transfers.log

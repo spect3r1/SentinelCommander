@@ -1,0 +1,139 @@
+# Makefile for RunOF (Mono mcs build)
+
+SHELL := /bin/bash
+
+# --------------------------------------------------------------------
+# Project settings (NO trailing spaces!)
+# --------------------------------------------------------------------
+PROJECT ?= RunOF
+CONFIG  ?= Release        # Debug | Release
+ARCH    ?= AnyCPU         # AnyCPU | x86 | x64
+
+# Normalize ARCH/CONFIG (strip spaces, lower-case arch for path)
+CONFIG_N := $(strip $(CONFIG))
+ARCH_N   := $(strip $(ARCH))
+ARCH_LC  := $(shell printf '%s' '$(ARCH_N)' | tr '[:upper:]' '[:lower:]')
+
+# Output paths (VS-like)
+OUTDIR := bin/$(ARCH_LC)/$(CONFIG_N)
+OUTEXE := $(OUTDIR)/AV.exe
+
+# Sources
+SRC_ROOT      := Program.cs
+SRC_INTERNALS := $(wildcard Internals/*.cs internals/*.cs)
+SOURCES       := $(SRC_ROOT) $(SRC_INTERNALS)
+
+# Optional app.config
+APP_CONFIG     := $(wildcard App.config)
+APP_CONFIG_OUT := $(OUTEXE).config
+
+# Optional resources
+RESX    := Properties/Resources.resx
+RESFILE := Properties/Resources.resources
+RESNAME := $(PROJECT).Properties.Resources.resources
+RESGEN  := $(shell command -v resgen2 2>/dev/null || command -v resgen 2>/dev/null)
+
+# References (adjust if needed)
+REFS := \
+	-r:System \
+	-r:System.Core \
+	-r:System.Xml.Linq \
+	-r:System.Data.DataSetExtensions \
+	-r:Microsoft.CSharp \
+	-r:System.Data \
+	-r:System.Net.Http \
+	-r:System.Xml
+
+# Defines & flags (mirror VS)
+DEFINES := -define:TRACE
+ifeq ($(CONFIG_N),Debug)
+	DEFINES += -define:DEBUG
+	OPTFLAGS := -debug
+else
+	OPTFLAGS := -optimize+
+endif
+
+ifeq ($(ARCH_N),x86)
+	DEFINES += -define:_I386
+else ifeq ($(ARCH_N),x64)
+	DEFINES += -define:_AMD64
+endif
+
+UNSAFE ?= 1
+ifeq ($(UNSAFE),1)
+	UNSAFEFLAG := -unsafe
+endif
+
+PLATFLAG := -platform:$(shell printf '%s' '$(ARCH_N)' | tr '[:upper:]' '[:lower:]')
+
+MCS := $(shell command -v mcs 2>/dev/null)
+ifeq ($(strip $(MCS)),)
+	$(error mcs not found. Install Mono (e.g., apt-get install mono-devel))
+endif
+
+# --------------------------------------------------------------------
+# Targets
+# --------------------------------------------------------------------
+.PHONY: all build run clean distclean info
+
+all: build
+
+build: $(OUTEXE)
+
+# Final executable
+$(OUTEXE): $(SOURCES) | $(OUTDIR) $(RESFILE_OPT)
+	@echo "==> Compiling $(PROJECT) ($(CONFIG_N), $(ARCH_N))"
+	"$(MCS)" \
+		$(PLATFLAG) $(OPTFLAGS) $(UNSAFEFLAG) $(DEFINES) $(REFS) \
+		-langversion:7.2 \
+		-target:exe -out:"$@" \
+		$(SOURCES) \
+		$(RESOPT)
+	@echo "OK -> $@"
+
+# Output directory (single recipe; no duplicates)
+$(OUTDIR):
+	@mkdir -p "$@"
+
+# -------- Optional: embed Resources.resx if present --------
+ifneq ($(wildcard $(RESX)),)
+RESFILE_OPT := $(RESFILE)
+RESOPT := -resource:$(RESFILE),$(RESNAME)
+
+$(RESFILE): $(RESX)
+ifeq ($(strip $(RESGEN)),)
+	$(error resgen/resgen2 not found to convert $(RESX); install mono-devel)
+endif
+	@echo "==> resgen $(RESX) -> $(RESFILE)"
+	@mkdir -p "$(@D)"
+	"$(RESGEN)" "$<" "$@"
+endif
+
+# -------- Optional: copy App.config if present --------
+ifneq ($(strip $(APP_CONFIG)),)
+build: $(APP_CONFIG_OUT)
+
+$(APP_CONFIG_OUT): $(APP_CONFIG) | $(OUTDIR)
+	@cp "$(APP_CONFIG)" "$(APP_CONFIG_OUT)"
+	@echo "Copied App.config -> $(APP_CONFIG_OUT)"
+endif
+
+run: build
+	@echo "==> Running $(OUTEXE)"
+	@mono "$(OUTEXE)"
+
+clean:
+	@rm -rf bin obj $(RESFILE)
+	@echo "Cleaned build artifacts."
+
+distclean: clean
+	@echo "Distclean complete."
+
+info:
+	@echo "PROJECT = $(PROJECT)"
+	@echo "CONFIG  = $(CONFIG_N)"
+	@echo "ARCH    = $(ARCH_N)"
+	@echo "OUTEXE  = $(OUTEXE)"
+	@echo "SOURCES = $(SOURCES)"
+	@echo "RESX    = $(if $(wildcard $(RESX)),yes,no)"
+	@echo "APP.config = $(if $(APP_CONFIG),yes,no)"
