@@ -218,34 +218,34 @@ class TcpListener(Listener):
     def is_alive(self) -> bool:
         return bool(self._thread and self._thread.is_alive())
 
-def run_loop(self, stop_event: threading.Event, ctx: ssl.SSLContext | None):
-    while not stop_event.is_set():
-        try:
-            client, addr = self.server.accept()
-        except OSError:
-            break
-
-        if self.is_ssl and ctx:
+    def run_loop(self, stop_event: threading.Event, ctx: ssl.SSLContext | None):
+        while not stop_event.is_set():
             try:
-                client.settimeout(0.5)
-                client = ctx.wrap_socket(client, server_side=True, do_handshake_on_connect=True)
-            except Exception:
-                print(brightred + f"[!] TLS handshake failed from {addr}")
-                try: client.close()
-                except Exception: pass
-                continue
-            finally:
-                try: client.settimeout(None)
-                except Exception: pass
+                client, addr = self.server.accept()
+            except OSError:
+                break
 
-        sid = utils.gen_session_id()
-        session_manager.register_tcp_session(sid, client, self.is_ssl)
-        self.sessions.append(sid)
+            if self.is_ssl and ctx:
+                try:
+                    client.settimeout(0.5)
+                    client = ctx.wrap_socket(client, server_side=True, do_handshake_on_connect=True)
+                except Exception:
+                    print(brightred + f"[!] TLS handshake failed from {addr}")
+                    try: client.close()
+                    except Exception: pass
+                    continue
+                finally:
+                    try: client.settimeout(None)
+                    except Exception: pass
 
-        print(brightgreen + f"[+] New {'TLS' if self.is_ssl else 'TCP'} agent: {sid}")
-        
-        # Use the new handler instead of _collect_tcp_metadata
-        threading.Thread(target=_handle_tcp_session_v2, args=(sid,), daemon=True).start()
+            sid = utils.gen_session_id()
+            session_manager.register_tcp_session(sid, client, self.is_ssl)
+            self.sessions.append(sid)
+
+            print(brightgreen + f"[+] New {'TLS' if self.is_ssl else 'TCP'} agent: {sid}")
+            
+            # Use the new handler instead of _collect_tcp_metadata
+            threading.Thread(target=_handle_tcp_session_v2, args=(sid,), daemon=True).start()
 
 # import logging
 # logger = logging.getLogger(__name__)
